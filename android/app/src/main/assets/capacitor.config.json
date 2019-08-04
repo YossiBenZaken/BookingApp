@@ -1,0 +1,7 @@
+{
+  "appId": "com.firstproject.ionic",
+  "appName": "FirstProject",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
