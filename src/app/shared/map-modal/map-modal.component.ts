@@ -18,7 +18,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./map-modal.component.scss']
 })
 export class MapModalComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('map', {static: false}) mapElementRef: ElementRef;
+  @ViewChild('map', { static: false }) mapElementRef: ElementRef;
   @Input() center = { lat: 31.387556, lng: 35.012773 };
   @Input() selectable = true;
   @Input() closeButtonText = 'Cancel';
@@ -29,9 +29,9 @@ export class MapModalComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private modalCtrl: ModalController,
     private renderer: Renderer2
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.getGoogleMaps()
