@@ -15,6 +15,7 @@ import { CreateBookingComponent } from '../../../bookings/create-booking/create-
 import { BookingService } from '../../../bookings/booking.service';
 import { AuthService } from '../../../auth/auth.service';
 import { MapModalComponent } from '../../../shared/map-modal/map-modal.component';
+import { switchMap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-place-detail',
@@ -38,7 +39,7 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
     private authService: AuthService,
     private alertCtrl: AlertController,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
@@ -47,12 +48,20 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
         return;
       }
       this.isLoading = true;
-      this.placeSub = this.placesService
-        .getPlace(paramMap.get('placeId'))
+      let fetchedUserId: string;
+      this.authService.userId.pipe(take(1),switchMap(userId => {
+        if (!userId) {
+          throw new Error('Found no user!');
+        }
+        fetchedUserId = userId;
+        return this.placesService
+          .getPlace(paramMap.get('placeId'));
+      })
+      )
         .subscribe(
           place => {
             this.place = place;
-            this.isBookable = place.userId !== this.authService.userId;
+            this.isBookable = place.userId !== fetchedUserId;
             this.isLoading = false;
           },
           error => {

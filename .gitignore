@@ -29,6 +29,7 @@ plugins/android.json
 plugins/ios.json
 $RECYCLE.BIN/
 src/environments/
+functions/ionic-booking-1.json
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
