@@ -1,6 +1,6 @@
 {
-  "appId": "com.firstproject.ionic",
-  "appName": "FirstProject",
+  "appId": "com.booking.ionic",
+  "appName": "Booking",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www"
